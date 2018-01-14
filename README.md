@@ -46,6 +46,10 @@ The following **optional** features are implemented:
 ## Installation & Setup
 - Clone the repo
 - Use provided gradlew to clean build
+- Create mysql 'mlk' database (update username/password in application.yml)
+  - mysql -u root -
+  - {enter password for root or your user}
+  - create database mlk;
 - Run Embedded Tomcat on command line: java -jar ./build/libs/mlk-fun-project-0.1.0.jar
 - Use Postman or CURL requests (examples in Video walkthrough)
   - GET charities: curl http://localhost:9000/mlk/charities
