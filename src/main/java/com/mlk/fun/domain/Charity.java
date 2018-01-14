@@ -1,5 +1,6 @@
 package com.mlk.fun.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -18,6 +19,10 @@ public class Charity extends BaseDomain {
     @Column
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "charities")
     private Set<CharityGoal> charityGoals;
+
+    @OneToMany(mappedBy = "charity")
+    @JsonIgnore
+    private Set<Donation> donations;
 
     public Long getId() {
         return id;

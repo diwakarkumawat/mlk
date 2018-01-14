@@ -1,13 +1,18 @@
 package com.mlk.fun.config;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.mlk.fun.domain.Charity;
 import com.mlk.fun.domain.CharityGoal;
 import com.mlk.fun.domain.Donor;
 import com.mlk.fun.dto.DonationDto;
+import com.mlk.fun.dto.DonorDto;
 import com.mlk.fun.service.CharityGoalService;
 import com.mlk.fun.service.CharityService;
 import com.mlk.fun.service.DonationService;
@@ -86,15 +91,35 @@ public class MlkCharityController {
 
     //Implement a GET endpoint that given a charityID, returns a list of the 10 Donors who gave the most in Donations.
     @RequestMapping(value="topDonors/{charityId}", method=RequestMethod.GET)
-    public @ResponseBody ResponseEntity<List<Donor>> getTop10Donors(
+    public @ResponseBody ResponseEntity<Set<DonorDto>> getTop10Donors(
             @PathVariable("charityId") Long charityId
             ) {
         log.info("getTOp10Donors");
-        Response<List<Donor>> response = donorService.getTop10Donors(charityId);
+        Response<Set<DonorDto>> response = donorService.getTop10Donors(charityId);
         return new ResponseEntity<>(response.getData(), HttpStatus.OK);
+    }
 
+    //Implement a GET endpoint that given a donorId, a fromDate and a toDate, returns the list of Donations for that Donor in the given time period.
+    @RequestMapping(value="donationsBy/{donorId}/from/{fromDate}/to/{toDate}", method=RequestMethod.GET)
+    public @ResponseBody ResponseEntity<List<DonationDto>> getDonationsByDonor(
+            @PathVariable("donorId") Long donorId,
+            @PathVariable("fromDate") String from,
+            @PathVariable("toDate") String to
+    ) {
+        log.info("getDonationsByDonor");
+        Response<List<DonationDto>> response = donationService.getDonationsByDonorInRange(donorId, toDate(from), toDate(to));
+        return new ResponseEntity<>(response.getData(), HttpStatus.OK);
     }
 
 
+    //String testDate = "29-Apr-2010,13:00:14 PM";
+    DateFormat formatter = new SimpleDateFormat("d-MMM-yyyy,HH:mm:ss aaa");
 
+    private Date toDate(String input) {
+        try {
+            return formatter.parse(input);
+        }catch(Exception x) {
+            return new Date(); // for now - just return today
+        }
+    }
 }

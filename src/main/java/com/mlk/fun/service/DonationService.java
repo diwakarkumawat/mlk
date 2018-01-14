@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Slf4j
@@ -33,14 +34,18 @@ public class DonationService {
         return new Response<List<Donation>>(donationRepository.findAll());
     }
 
-    public Response<DonationDto> createDonation(@NonNull DonationDto dto) {
+    public Response<List<DonationDto>> getDonationsByDonorInRange(Long donorId, Date from, Date to) {
+        List<Donation> donations = donationRepository.findAllByDonorAndDonationDateBetween(donorRepository.findOne(donorId), from, to);
+        return new Response(donations.stream().map( donation -> new DonationDto(donation)).collect(Collectors.toList()));
+    }
 
+    public Response<DonationDto> createDonation(@NonNull DonationDto dto) {
         // Create new Donation
         Donation donation = new Donation();
         donation.setDonationDate(new Date()); // Today
         donation.setAmount(dto.getAmount());
-        donation.getDonor().add(donorRepository.findOne(dto.getDonorId()));
-        donation.getCharity().add(charityRepository.findOne(dto.getCharityId()));
+        donation.setDonor(donorRepository.findOne(dto.getDonorId()));
+        donation.setCharity(charityRepository.findOne(dto.getCharityId()));
         donation = donationRepository.save(donation);
         dto.setId(donation.getId());
         return new Response<DonationDto>(dto);
