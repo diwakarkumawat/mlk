@@ -63,7 +63,7 @@ The following **optional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://i.imgur.com/glGS9ml.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/3o751Rq2IRgtXZ8TE4/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ## Technologies/Frameworks
 Spring Boot 1.5.9
