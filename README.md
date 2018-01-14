@@ -61,6 +61,9 @@ The following **optional** features are implemented:
 
 ## Video Walkthrough
 
+Path to Video Demo:
+mlk/mlk-work-demo.gif
+
 Here's a walkthrough of implemented user stories:
 
 <img src='https://media.giphy.com/media/3o751Rq2IRgtXZ8TE4/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
