@@ -1,0 +1,33 @@
+Define a data model in JPA.
+
+There are Charities, Donors, and Donations as the basic data model, plus CharityGoals.
+
+Each Donation has a many-to-one relationship to Charity and Donor.  Likewise, Charity and Donor are each one-to-many with Donation.
+
+Each Charity has a name
+
+Each Donor has a firstName, lastName
+
+Each Donation has a date and an amount.
+
+Charity has a many to many relationship to CharityGoal.
+
+Each CharityGoal has a name.
+
+Prepopulate CharityGoal with values such as “Feed the hungry”, “Protect animals”, “Save the Children”, “Rescue those in trouble”, “Save the planet”, “Medical research”
+
+Prepopulate Charity with values such as “ASPCA”, “RedCross”, “American Cancer Society”
+
+Prepopulate Donor with values such as “Jack” “Jones”, “John” “Smith”, “Helen” “Smith”, and “Sally” “Underhill”.
+
+Create a REST server using Java, which supports GET endpoints that fetch Charities, Donations, and Donors.
+
+Implement the REST server using framework of your choice, preferably Jersey.
+
+Implement a POST endpoint that links a Charity to a CharityGoal.  Remember that that GET for Charity will need to return the list of CharityGoal(s) for the Charity.
+
+Implement a POST endpoint that creates a new Donation, with date and amount.
+
+Implement a GET endpoint that given a charityID, returns a list of the 10 Donors who gave the most in Donations.
+
+Implement a GET endpoint that given a donorId, a fromDate and a toDate, returns the list of Donations for that Donor in the given time period.

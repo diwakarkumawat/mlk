@@ -10,7 +10,7 @@ import java.util.Set;
 @Entity
 @Table
 @Data
-public class Donation {
+public class Donation extends BaseDomain {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

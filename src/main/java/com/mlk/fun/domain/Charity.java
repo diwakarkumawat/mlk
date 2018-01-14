@@ -8,7 +8,7 @@ import java.util.Set;
 @Entity
 @Table
 @Data
-public class Charity {
+public class Charity extends BaseDomain {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;

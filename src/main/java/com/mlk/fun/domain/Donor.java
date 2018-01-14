@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Entity
 @Table
 @Data
-public class Donor {
+public class Donor extends BaseDomain {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
