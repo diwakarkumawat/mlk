@@ -1,4 +1,4 @@
-package config;
+package com.mlk.fun.config;
 
 public class Greeting {
 

@@ -1,4 +1,4 @@
-package config;
+package com.mlk.fun.config;
 
 import com.mlk.fun.domain.User;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("com.mlk.fun.domain")
+@EnableJpaRepositories("com.mlk.fun")
 @ComponentScan({"com.mlk.fun"})
 @EntityScan(basePackageClasses = User.class)
 public class DatabaseConfig {

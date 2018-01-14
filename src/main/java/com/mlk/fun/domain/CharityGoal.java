@@ -17,6 +17,6 @@ public class CharityGoal extends BaseDomain {
     private String name;
 
     @Column
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Charity> charities;
 }

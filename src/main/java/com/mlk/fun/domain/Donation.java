@@ -1,5 +1,6 @@
 package com.mlk.fun.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,10 +22,12 @@ public class Donation extends BaseDomain {
 
     @Column
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat
+            (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date donationDate;
 
     @Column
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Donor> donor;
 
     @Column

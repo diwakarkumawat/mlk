@@ -1,5 +1,7 @@
 package com.mlk.fun.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -10,10 +12,14 @@ public abstract class BaseDomain implements Serializable {
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat
+            (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date dateCreated;
 
     @Column(nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat
+            (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date dateUpdated;
 
     @PrePersist
