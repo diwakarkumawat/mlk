@@ -1,10 +1,12 @@
 package com.mlk.fun.service;
 
+import com.mlk.fun.config.MlkCharityController;
 import com.mlk.fun.domain.Donation;
 import com.mlk.fun.dto.DonationDto;
 import com.mlk.fun.repo.CharityRepository;
 import com.mlk.fun.repo.DonationRepository;
 import com.mlk.fun.repo.DonorRepository;
+import com.mlk.fun.util.DateUtil;
 import com.mlk.fun.util.Response;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -29,9 +31,10 @@ public class DonationService {
     @Autowired
     private CharityRepository charityRepository;
 
-    public Response<List<Donation>> getAllDonations() {
+    public Response<List<DonationDto>> getAllDonations() {
         log.info("getAllDonations");
-        return new Response<List<Donation>>(donationRepository.findAll());
+        List<Donation> donations = donationRepository.findAll();
+        return new Response(donations.stream().map( donation -> new DonationDto(donation)).collect(Collectors.toList()));
     }
 
     public Response<List<DonationDto>> getDonationsByDonorInRange(Long donorId, Date from, Date to) {
@@ -42,7 +45,7 @@ public class DonationService {
     public Response<DonationDto> createDonation(@NonNull DonationDto dto) {
         // Create new Donation
         Donation donation = new Donation();
-        donation.setDonationDate(new Date()); // Today
+        donation.setDonationDate(DateUtil.toDate(dto.getDonationDate()));
         donation.setAmount(dto.getAmount());
         donation.setDonor(donorRepository.findOne(dto.getDonorId()));
         donation.setCharity(charityRepository.findOne(dto.getCharityId()));

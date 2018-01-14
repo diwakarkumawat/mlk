@@ -17,6 +17,7 @@ import com.mlk.fun.service.CharityGoalService;
 import com.mlk.fun.service.CharityService;
 import com.mlk.fun.service.DonationService;
 import com.mlk.fun.service.DonorService;
+import com.mlk.fun.util.DateUtil;
 import com.mlk.fun.util.Response;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,14 @@ public class MlkCharityController {
         return new ResponseEntity<>(response.getData(), HttpStatus.OK);
 
     }
+
+    @RequestMapping(value="donations", method=RequestMethod.GET)
+    public @ResponseBody ResponseEntity<List<DonationDto>> getDonations() {
+        log.info("getDonations");
+        Response<List<DonationDto>> response = donationService.getAllDonations();
+        return new ResponseEntity<>(response.getData(), HttpStatus.OK);
+    }
+
 
     @RequestMapping(value="donors", method=RequestMethod.GET)
     public @ResponseBody ResponseEntity<List<Donor>> getDonors() {
@@ -107,19 +116,7 @@ public class MlkCharityController {
             @PathVariable("toDate") String to
     ) {
         log.info("getDonationsByDonor");
-        Response<List<DonationDto>> response = donationService.getDonationsByDonorInRange(donorId, toDate(from), toDate(to));
+        Response<List<DonationDto>> response = donationService.getDonationsByDonorInRange(donorId, DateUtil.toDate(from), DateUtil.toDate(to));
         return new ResponseEntity<>(response.getData(), HttpStatus.OK);
-    }
-
-
-    //String testDate = "29-Apr-2010,13:00:14 PM";
-    DateFormat formatter = new SimpleDateFormat("d-MMM-yyyy,HH:mm:ss aaa");
-
-    private Date toDate(String input) {
-        try {
-            return formatter.parse(input);
-        }catch(Exception x) {
-            return new Date(); // for now - just return today
-        }
     }
 }

@@ -1,6 +1,7 @@
 target
 test-output
 .gradle
+.gradle/*
 .project
 .settings
 .classpath
