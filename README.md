@@ -43,12 +43,23 @@ The following **optional** features are implemented:
 - [x ] Dates are formatted as user readable
 - [x ] Lobmok used to eliminate boilerplate Getter/Setters
 
+## Installation & Setup
+- Clone the repo
+- Use provided gradlew to clean build
+- Run Embedded Tomcat on command line: java -jar ./build/libs/mlk-fun-project-0.1.0.jar
+- Use Postman or CURL requests (examples in Video walkthrough)
+  - GET charities: curl http://localhost:9000/mlk/charities
+  - GET donors: curl http://localhost:9000/mlk/donors
+  - GET donations: curl http://localhost:9000/mlk/donations
+  - GET charityGoals: curl http://localhost:9000/mlk/goals
+- Create Donations, Associations etc
+  - See Video for doing it in Postman
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/lVot2Hs.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/glGS9ml.gifv' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
