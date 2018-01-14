@@ -46,18 +46,9 @@ public class CharityService {
         // Find goal
         CharityGoal charityGoal = charityGoalRepository.findOne(goalId);
 
-        // not found?
-        if(charity == null || charityGoal == null)
-            return new Response<Charity>(HttpStatus.NOT_FOUND, "Charity or Goal Not Found");
+        charityGoal.getCharities().add(charity);
+        charityGoalRepository.save(charityGoal);
 
-        // Add it
-        Set<CharityGoal> existingGoals = charity.getCharityGoals();
-        if(existingGoals == null)
-            existingGoals = new HashSet<>();
-
-        existingGoals.add(charityGoal);
-
-        charity = charityRepository.save(charity);
-        return new Response<Charity>(charity);
+        return new Response<Charity>(charityRepository.getOne(charityId));
     }
 }
