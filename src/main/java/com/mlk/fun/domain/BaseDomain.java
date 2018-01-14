@@ -1,14 +1,11 @@
 package com.mlk.fun.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
 @MappedSuperclass
-@Data
+@SuppressWarnings("serial")
 public abstract class BaseDomain implements Serializable {
 
     @Column(nullable = false)
@@ -27,6 +24,22 @@ public abstract class BaseDomain implements Serializable {
     @PreUpdate
     public void preUpdate() {
         this.dateUpdated = new Date();
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Date getDateUpdated() {
+        return dateUpdated;
+    }
+
+    public void setDateUpdated(Date dateUpdated) {
+        this.dateUpdated = dateUpdated;
     }
 
     void createTimeStamp() {

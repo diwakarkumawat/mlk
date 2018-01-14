@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({"com.mlk.fun"})
 public class MlkCharityConfiguration {
 
 	public static void main(String[] args) {
