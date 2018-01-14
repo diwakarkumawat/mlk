@@ -7,7 +7,7 @@ Time spent: 8 hours spent on 1/13
 The following **required** functionality is completed:
 
 - [x ] Define a data model in JPA
-   - [x ] ALl Domain Entities and Relationships defined with JPA annotations.
+   - [x ] All Domain Entities and Relationships defined with JPA annotations.
    - [x ] Deployed on MySQL. Tested & Verified.
 - [x ] There are Charities, Donors, and Donations as the basic data model, plus CharityGoals.
   - [x ] Each Charity has a name
