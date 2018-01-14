@@ -1,0 +1,10 @@
+spring.application.name: mlk
+
+spring.datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mlk?autoReconnect=true&useSSL=false&useUnicode=yes
+    username: root
+    password: purpose
+    validation-query: SELECT 1
+    test-on-borrow: true
+
