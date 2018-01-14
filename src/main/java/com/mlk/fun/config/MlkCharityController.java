@@ -7,12 +7,12 @@ import java.util.concurrent.atomic.AtomicLong;
 import com.mlk.fun.domain.Charity;
 import com.mlk.fun.domain.CharityGoal;
 import com.mlk.fun.domain.Donor;
+import com.mlk.fun.dto.DonationDto;
 import com.mlk.fun.service.CharityGoalService;
 import com.mlk.fun.service.CharityService;
 import com.mlk.fun.service.DonationService;
 import com.mlk.fun.service.DonorService;
 import com.mlk.fun.util.Response;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,7 +59,6 @@ public class MlkCharityController {
         log.info("getDonors");
         Response<List<Donor>> response = donorService.getAllDonors();
         return new ResponseEntity<>(response.getData(), HttpStatus.OK);
-
     }
 
     @RequestMapping(value="goals", method=RequestMethod.GET)
@@ -76,4 +75,26 @@ public class MlkCharityController {
         Response<Charity> response = charityService.createCharityGoal(requestJson.get("charityId"), requestJson.get("goalId"));
         return new ResponseEntity<>(response.getData(), HttpStatus.OK);
     }
+
+    @RequestMapping(value="donation", method=RequestMethod.POST)
+    public @ResponseBody ResponseEntity<DonationDto>createDonation(
+            @RequestBody DonationDto donationDto) {
+        log.info("createDonation");
+        Response<DonationDto> response = donationService.createDonation(donationDto);
+        return new ResponseEntity<>(response.getData(), HttpStatus.OK);
+    }
+
+    //Implement a GET endpoint that given a charityID, returns a list of the 10 Donors who gave the most in Donations.
+    @RequestMapping(value="topDonors/{charityId}", method=RequestMethod.GET)
+    public @ResponseBody ResponseEntity<List<Donor>> getTop10Donors(
+            @PathVariable("charityId") Long charityId
+            ) {
+        log.info("getTOp10Donors");
+        Response<List<Donor>> response = donorService.getTop10Donors(charityId);
+        return new ResponseEntity<>(response.getData(), HttpStatus.OK);
+
+    }
+
+
+
 }

@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -28,10 +29,10 @@ public class Donation extends BaseDomain {
 
     @Column
     @OneToMany(fetch = FetchType.EAGER)
-    private Set<Donor> donor;
+    private Set<Donor> donor = new HashSet<>();
 
     @Column
     @OneToMany
-    private Set<Charity> charity;
+    private Set<Charity> charity = new HashSet<>();
 
 }
