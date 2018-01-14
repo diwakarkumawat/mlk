@@ -11,6 +11,7 @@ test-output
 *.log
 resourceVersions.properties
 out/
+build/
 Servers/
 *~
 application-*.properties
